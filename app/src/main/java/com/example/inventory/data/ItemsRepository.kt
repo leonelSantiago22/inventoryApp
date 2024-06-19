@@ -17,6 +17,7 @@
 package com.example.inventory.data
 
 import kotlinx.coroutines.flow.Flow
+import java.util.Locale
 
 /**
  * Repository that provides insert, update, delete, and retrieve of [Item] from a given data source.

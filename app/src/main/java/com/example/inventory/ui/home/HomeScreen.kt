@@ -62,6 +62,7 @@ import com.example.inventory.ui.AppViewModelProvider
 import com.example.inventory.ui.item.formatedPrice
 import com.example.inventory.ui.navigation.NavigationDestination
 import com.example.inventory.ui.theme.InventoryTheme
+import androidx.compose.ui.graphics.Color
 
 object HomeDestination : NavigationDestination {
     override val route = "home"
@@ -190,10 +191,21 @@ private fun InventoryItem(
                     style = MaterialTheme.typography.titleMedium
                 )
             }
-            Text(
-                text = stringResource(R.string.in_stock, item.quantity),
-                style = MaterialTheme.typography.titleMedium
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = stringResource(R.string.in_stock, item.quantity),
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Spacer(Modifier.weight(1f))
+                Text(
+                    text = item.category,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.Red
+                )
+            }
+
         }
     }
 }
@@ -203,7 +215,7 @@ private fun InventoryItem(
 fun HomeBodyPreview() {
     InventoryTheme {
         HomeBody(listOf(
-            Item(1, "Game", 100.0, 20), Item(2, "Pen", 200.0, 30), Item(3, "TV", 300.0, 50)
+            Item(1, "Game", 100.0, "Utencilio",20), Item(2, "Pen", 200.0, "Blanco",30), Item(3, "TV", 300.0, "Rojo",50)
         ), onItemClick = {})
     }
 }
@@ -221,7 +233,7 @@ fun HomeBodyEmptyListPreview() {
 fun InventoryItemPreview() {
     InventoryTheme {
         InventoryItem(
-            Item(1, "Game", 100.0, 20),
+            Item(1, "Game", 100.0, "Utencilio",20),
         )
     }
 }

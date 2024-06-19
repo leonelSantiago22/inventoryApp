@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModel
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemsRepository
 import java.text.NumberFormat
+import java.util.Locale.Category
 
 /**
  * ViewModel to validate and insert items in the Room database.
@@ -72,6 +73,7 @@ data class ItemDetails(
     val id: Int = 0,
     val name: String = "",
     val price: String = "",
+    val category: String = "",
     val quantity: String = "",
 )
 
@@ -83,6 +85,7 @@ data class ItemDetails(
 fun ItemDetails.toItem(): Item = Item(
     id = id,
     name = name,
+    category = category,
     price = price.toDoubleOrNull() ?: 0.0,
     quantity = quantity.toIntOrNull() ?: 0
 )
@@ -106,5 +109,6 @@ fun Item.toItemDetails(): ItemDetails = ItemDetails(
     id = id,
     name = name,
     price = price.toString(),
+    category = category,
     quantity = quantity.toString()
 )
